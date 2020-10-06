@@ -19,9 +19,17 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          github.issues.addLabels({
+          const issueLabels = github.issues.listLabelsOnIssue({
             issue_number: context.issue.number,
             owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ['needs triage']
-          })
+            repo: context.repo.repo
+          });
+          
+          if (!issueLabels.includes('announcement')) {
+            github.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['needs triage']
+            })
+          }        
