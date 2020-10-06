@@ -25,14 +25,10 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo
           });
-          console.log(issueLabels);
-          
-          if (issueLabels && issueLabels.length) {
-            const labelNames = issueLabels.map(label => label.name);
+          const labelNames = issueLabels.data.map(label => label.name);
             
-            console.log(labelNames);  
-            isAnnouncement = labelNames.includes('announcement');
-          }          
+          console.log(labelNames);  
+          isAnnouncement = labelNames.includes('announcement');       
           
           if (!isAnnouncement) {
             github.issues.addLabels({
