@@ -19,15 +19,19 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
+          let isAnnouncement = false;
           const issueLabels = github.issues.listLabelsOnIssue({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo
           });
           
-          const labelNames = issueLabels.map(label => label.name);
+          if (issueLabels && issueLabels.length) {
+            const labelNames = issueLabels.map(label => label.name);
+            isAnnouncement = labelNames.includes('announcement');
+          }          
           
-          if (!labelNames.includes('announcement')) {
+          if (!isAnnouncement) {
             github.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
