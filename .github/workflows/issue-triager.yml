@@ -25,7 +25,9 @@ jobs:
             repo: context.repo.repo
           });
           
-          if (!issueLabels.includes('announcement')) {
+          const labelNames = issueLabels.map(label => label.name);
+          
+          if (!labelNames.includes('announcement')) {
             github.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
