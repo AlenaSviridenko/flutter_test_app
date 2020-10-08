@@ -19,16 +19,15 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          let isAnnouncement = false;
           const issueLabels = await github.issues.listLabelsOnIssue({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo
           });
-          const labelNames = issueLabels.data.map(label => label.name);
-            
-          console.log(labelNames);  
-          isAnnouncement = labelNames.includes('announcement');       
+
+          const isAnnouncement = issueLabels.data && issueLabels.data
+            .map(label => label.name)
+            .includes('announcement'); 
           
           if (!isAnnouncement) {
             github.issues.addLabels({
@@ -37,4 +36,4 @@ jobs:
               repo: context.repo.repo,
               labels: ['needs triage']
             })
-          }        
+          }       
