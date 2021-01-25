@@ -26,14 +26,11 @@ jobs:
       - name: Run a multi-line script
         run: |
           sudo apt-get install -y gperf
-          
           tarballUrl=$(curl -s https://api.github.com/repos/seccomp/libseccomp/releases/latest | jq -r '.tarball_url')
           tarballPath="/tmp/libseccomp.tar.gz"
           wget $tarballUrl -O $tarballPath
           tar -xzvf $tarballPath -C /tmp
-
           cd /tmp/seccomp*
-
           autoreconf --install
           ./configure
           sudo make [V=0|1]
