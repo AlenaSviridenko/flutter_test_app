@@ -27,3 +27,5 @@ jobs:
         run: |
           docker pull node:14-alpine
           docker pull node:14
+          
+          docker images
