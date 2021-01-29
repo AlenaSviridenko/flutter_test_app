@@ -23,9 +23,9 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set var
         run: |
-          docker pull node:14-alpine
-          docker pull node:14
-          
-          docker images
+          echo "M2_HOME1=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
+      - name: Call var
+        run: |
+          echo $M2_HOME1
