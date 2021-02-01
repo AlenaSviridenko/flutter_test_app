@@ -25,4 +25,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: test command
         run: |
-          apt list --installed | grep dpckg-dev
+          apt list --installed | grep dpkg-dev
