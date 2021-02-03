@@ -16,15 +16,20 @@ on:
 jobs:
   test:
 
-    runs-on: windows-latest
+    name: Ruby 
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
         version: [2.4, 2.5.x, 2.6, 2.7.x]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
     - name: use-ruby ${{ matrix.version }}
-      uses: AlenaSviridenko/setup-ruby@test-deprecation-message
+      uses: ./
       with:
         ruby-version: ${{ matrix.version}}
+
+    - name: ruby version
+      run: ruby -v
