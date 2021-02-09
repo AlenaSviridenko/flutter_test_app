@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: use-ruby ${{ matrix.version }}
-      uses: AlenaSviridenko/setup-ruby@test-deprecation-message
+      uses: actions/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.version}}
 
