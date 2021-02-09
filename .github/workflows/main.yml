@@ -26,7 +26,7 @@ jobs:
           java-version: '14.0.2' # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-      - run: java -cp java HelloWorldApp
+      - run: java --version
 
       # Runs a set of commands using the runners shell
       #- name: test command
