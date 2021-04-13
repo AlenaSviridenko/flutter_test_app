@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,11 +23,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test
         run: |
-          df -m
-          docker images
-          docker pull node:14-alpine
-          docker images
-          df -m
+          wget https://github.com/nicklockwood/SwiftFormat/releases/download/0.47.13/swiftformat.zip
+          unzip swiftformat.zip
+          mv swiftformat /usr/local/bin/swiftformat
+          swiftformat --version
 
       # Runs a set of commands using the runners shell
       #- name: test command
