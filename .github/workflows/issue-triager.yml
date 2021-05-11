@@ -24,8 +24,28 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo
           });
-          
-          console.log(JSON.stringify(context.payload));
+
+          const issue = context.payload.issue;
+
+          if (issue.title.contains('[tool name]') && issue.body.contains('Tool name: <!--- Name -->')) {
+            // Close the issue
+            await github.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed'
+            });
+
+            // Comment on the issue
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in [discussions](https://github.com/github/docs/discussions)!"
+            });
+
+            return;
+          }
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
