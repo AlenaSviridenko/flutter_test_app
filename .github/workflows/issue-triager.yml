@@ -14,17 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - if: always()
-      uses: actions/github-script@0.4.0
+    - uses: actions/github-script@0.4.0
+      id: check-if-spammy
+      name: Check if new issue is spammy
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          const issueLabels = await github.issues.listLabelsOnIssue({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo
-          });
-
           const issue = context.payload.issue;
 
           if (issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->')) {
@@ -44,8 +39,24 @@ jobs:
               body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in [discussions](https://github.com/github/docs/discussions)!"
             });
 
-            return;
+            return true;
           }
+
+          return false;
+
+    - if: always()
+      uses: actions/github-script@0.4.0
+      name: assign-labels
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const issueLabels = await github.issues.listLabelsOnIssue({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          });
+
+          console.log("${{steps.check-if-spammy.outputs.result}}");
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
