@@ -26,6 +26,7 @@ jobs:
           });
 
           const issue = context.payload.issue;
+          console.log(issue.title);
 
           if (issue.title.contains('[tool name]') && issue.body.contains('Tool name: <!--- Name -->')) {
             // Close the issue
