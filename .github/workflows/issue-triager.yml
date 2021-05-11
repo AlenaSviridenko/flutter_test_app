@@ -26,9 +26,8 @@ jobs:
           });
 
           const issue = context.payload.issue;
-          console.log(issue.title);
 
-          if (issue.title.contains('[tool name]') && issue.body.contains('Tool name: <!--- Name -->')) {
+          if (issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->')) {
             // Close the issue
             await github.issues.update({
               owner: context.repo.owner,
