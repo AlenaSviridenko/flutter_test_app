@@ -44,9 +44,9 @@ jobs:
 
           return false;
 
-    - if: always()
+    - if: ${{ !steps.check-if-spammy.outputs.result }}
       uses: actions/github-script@0.4.0
-      name: assign-labels
+      name: Assign labels to issue
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
@@ -55,8 +55,6 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo
           });
-
-          console.log("${{steps.check-if-spammy.outputs.result}}");
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
