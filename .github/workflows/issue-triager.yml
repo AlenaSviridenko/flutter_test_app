@@ -17,9 +17,9 @@ jobs:
     - uses: actions/github-script@0.4.0
       id: check-if-spammy
       name: Check if new issue is spammy
-      result-encoding: string
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
+        result-encoding: string
         script: |
           const issue = context.payload.issue;
 
