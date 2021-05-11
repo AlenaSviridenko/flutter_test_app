@@ -25,7 +25,7 @@ jobs:
             repo: context.repo.repo
           });
           
-          console.log(JSON.stringify(context.issue));
+          console.log(JSON.stringify(context.payload));
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
