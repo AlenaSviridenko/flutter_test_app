@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v1
 
     - uses: actions/github-script@0.4.0
-      id: check-if-empty
-      name: Check if new issue is empty
+      id: check-if-spammy
+      name: Check if new issue is spammy
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         result-encoding: string
@@ -27,7 +27,13 @@ jobs:
           const isEmptyToolRequest = !!(issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->'));
 
           if (isEmptyToolRequest || titleLength < minTitleLength) {
-            // Close the issue
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in discussions!"
+            });
+
             await github.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -36,20 +42,12 @@ jobs:
               state: 'closed'
             });
 
-            // Comment on the issue
-            await github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue.number,
-              body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in discussions!"
-            });
-
             return true;
           }
 
           return false;
 
-    - if: ${{ steps.check-if-empty.outputs.result == 'false' }}
+    - if: ${{ steps.check-if-spammy.outputs.result == 'false' }}
       uses: actions/github-script@0.4.0
       name: Assign labels to issue
       with:
