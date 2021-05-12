@@ -23,7 +23,7 @@ jobs:
         script: |
           const issue = context.payload.issue;
           const minTitleLength = 2;
-          const titleLength = issue.title.split(' ').length;
+          const titleLength = issue.title.trim().split(' ').length;
           const isEmptyToolRequest = !!(issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->'));
 
           if (isEmptyToolRequest || titleLength < minTitleLength) {
@@ -31,7 +31,7 @@ jobs:
             await github.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['Invalid']
+              labels: ['Invalid'],
               issue_number: issue.number,
               state: 'closed'
             });
