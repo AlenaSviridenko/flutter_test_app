@@ -24,8 +24,8 @@ jobs:
       - name: Test1
         run: |
           msbuild version
-      - if: always()
       - name: Test2
+        if: ${{ always() }}
         run: |
           mono '/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/bin/MSBuild/Current/bin/msbuild.dll' version
       # Runs a set of commands using the runners shell
