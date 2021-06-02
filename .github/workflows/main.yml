@@ -27,4 +27,5 @@ jobs:
       - name: Test2
         shell: pwsh
         run: |
+          Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1"
           Run-Command "swig -version" | Take-Part -Part 3
