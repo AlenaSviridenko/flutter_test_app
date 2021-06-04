@@ -52,4 +52,4 @@ jobs:
               return [string]::Join($Delimiter, $selectedParts)
           }
           
-          Run-Command "swig -version" | Take-Part -Part 3
+          Run-Command "swig -version" | Select-Object -First 2 | Take-Part -Part 3
