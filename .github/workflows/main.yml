@@ -51,6 +51,6 @@ jobs:
               $selectedParts = $parts[$Part]
               return [string]::Join($Delimiter, $selectedParts)
           }
-      - name: Test3
+      - name: Test33
         shell: pwsh
         run: Run-Command "swig -version" | Select-Object -First 2 | Take-Part -Part 3
