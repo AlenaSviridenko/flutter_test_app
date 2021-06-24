@@ -24,4 +24,4 @@ jobs:
       - name: Test1
         shell: pwsh
         run: |
-          $(Get-Item "hklm:\SOFTWARE\WOW6432Node\Microsoft\Microsoft SDKs\Windows").GetValue("CurrentVersion")
+          $(Get-Item "hklm:\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\10").GetValue("CurrentVersion")
