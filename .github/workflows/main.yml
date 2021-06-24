@@ -22,5 +22,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Test1
+        shell: pwsh
         run: |
-          dir "C:\Program Files (x86)\Windows Kits\10\bin"
+          $(Get-Item "hklm:\SOFTWARE\WOW6432Node\Microsoft\Microsoft SDKs\Windows").GetValue("CurrentVersion")
