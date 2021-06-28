@@ -31,8 +31,7 @@ body:
   - type: input
     attributes:
       label: Image version
-      description: Image version where you are experiencing the issue.
-      placeholder: Can be found in build logs under "Set up job" -> "Virtual Environment" -> "Version"
+      description: Image version where you are experiencing the issue. Image version can be found in build logs under "Set up job" -> "Virtual Environment" -> "Version"
   - type: textarea
     attributes:
       label: Expected behavior
