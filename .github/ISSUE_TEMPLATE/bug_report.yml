@@ -1,1 +1,53 @@
 
+name: Bug Report
+description: Submit a bug report
+labels: [needs triage]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is, and why you consider it to be a bug.
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Issue type
+      options:
+        - Bug
+        - Question
+        - Feature request
+  - type: dropdown
+    attributes:
+      label: Virtual environments affected
+      multiple: true
+      options:
+        - Ubuntu 16.04
+        - Ubuntu 18.04
+        - Ubuntu 20.04
+        - macOS 10.15
+        - macOS 11
+        - Windows Server 2016 R2
+        - Windows Server 2019
+  - type: input
+    attributes:
+      label: Image version
+      description: Image version where you are experiencing the issue.
+      placeholder: Can be found in build logs under "Set up job" -> "Virtual Environment" -> "Version"
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A description of what you expected to happen.
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: A description of what is actually happening.
+  - type: textarea
+    attributes:
+      label: Repro steps
+      placeholder: |
+        A description with steps to reproduce the issue. If your have a public example or repo to share,
+please provide the link.
+        1. Step 1
+        2. Step 2
+      validations: 
+        required: true
