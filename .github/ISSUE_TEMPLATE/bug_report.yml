@@ -45,8 +45,7 @@ body:
     attributes:
       label: Repro steps
       placeholder: |
-        A description with steps to reproduce the issue. If your have a public example or repo to share,
-please provide the link.
+        A description with steps to reproduce the issue. If your have a public example or repo to share, please provide the link.
         1. Step 1
         2. Step 2
       validations: 
