@@ -13,7 +13,7 @@ body:
       required: true
   - type: input
     attributes:
-      label: Tool license.
+      label: Tool license
       description: Type of licensing for desired tool.
     validations:
       required: true
@@ -22,26 +22,30 @@ body:
       label: Add or update?
       options:
         - label: Add
+          required: true
         - label: Update
+          required: true
     validations:
       required: true
   - type: input
     attributes:
-      label: Desired version.
+      label: Desired version
       description: Let us know if you're requesting a specific version, dev/RC, whatever is latest, etc.
+    validations:
+      required: true
   - type: input
     attributes:
-      label: Approximate size.
+      label: Approximate size
       description: Leave blank if unknown.
   - type: markdown
     attributes:
       value: "## If this is an add request"
   - type: textarea
     attributes:
-      label: Brief description of tool.
+      label: Brief description of tool
   - type: input
     attributes:
-      label: URL for tool's homepage.
+      label: URL for tool's homepage
   - type: textarea
     attributes:
       label: Provide a basic test case to validate the tool's functionality. 
@@ -65,7 +69,7 @@ body:
       render: bash
   - type: input
     attributes:
-      label: Tool installation time in runtime.
+      label: Tool installation time in runtime
       description: How long does it take to install the tool?
   - type: input
     attributes:
