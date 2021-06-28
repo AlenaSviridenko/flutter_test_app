@@ -44,7 +44,8 @@ body:
       label: URL for tool's homepage.
   - type: textarea
     attributes:
-      label: Provide a basic test case to validate the tool's functionality. This will be automatically formatted into code.
+      label: Provide a basic test case to validate the tool's functionality.
+      description: This will be automatically formatted into code.
       render: bash
   - type: dropdown
     attributes:
