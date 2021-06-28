@@ -47,7 +47,7 @@ body:
       label: Provide a basic test case to validate the tool's functionality. 
       description: This will be automatically formatted into code.
       render: bash
-  - type: dropdown
+  - type: checkboxes
     attributes:
       label: Virtual environments affected
       options:
