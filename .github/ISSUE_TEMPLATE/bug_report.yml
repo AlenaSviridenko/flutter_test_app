@@ -28,6 +28,7 @@ body:
         Image version where you are experiencing the issue. Where to find image version in build logs:
         1. For GitHub Actions, under "Set up job" -> "Virtual Environment" -> "Version".
         2. For Azure DevOps, under "Initialize job" -> "Virtual Environment" -> "Version".
+        
         If you have a public example, please, provide a link to the failed build.
     validations:
       required: true
