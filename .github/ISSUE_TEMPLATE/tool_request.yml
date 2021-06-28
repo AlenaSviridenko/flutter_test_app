@@ -44,21 +44,20 @@ body:
       label: URL for tool's homepage.
   - type: textarea
     attributes:
-      label: Provide a basic test case to validate the tool's functionality.
+      label: Provide a basic test case to validate the tool's functionality. 
       description: This will be automatically formatted into code.
       render: bash
   - type: dropdown
     attributes:
       label: Virtual environments affected
-      multiple: true
       options:
-        - Ubuntu 16.04
-        - Ubuntu 18.04
-        - Ubuntu 20.04
-        - macOS 10.15
-        - macOS 11
-        - Windows Server 2016 R2
-        - Windows Server 2019
+        - label: Ubuntu 16.04
+        - label: Ubuntu 18.04
+        - label: Ubuntu 20.04
+        - label: macOS 10.15
+        - label: macOS 11
+        - label: Windows Server 2016
+        - label: Windows Server 2019
   - type: textarea
     attributes:
       label: Can this tool be installed during the build?
