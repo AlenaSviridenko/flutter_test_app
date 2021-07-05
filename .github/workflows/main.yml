@@ -24,4 +24,4 @@ jobs:
       - name: Test1
         shell: pwsh
         run: |
-          $(Get-Item "hklm:\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\10").GetValue("CurrentVersion")
+          choco install swig
