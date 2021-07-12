@@ -30,7 +30,7 @@ jobs:
       - name: Test2
         run: |
           pipx uninstall ansible-core
-          pipx uninstall ansible
+          pipx runpip venv uninstall ansible
           pipx install ansible-base
           pipx inject ansible-base ansible
           ansible --version
