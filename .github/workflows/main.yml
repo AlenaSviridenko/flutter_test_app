@@ -15,13 +15,21 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Test1
-        shell: pwsh
         run: |
-          choco install swig
+          pipx uninstall ansible-base
+          pipx install ansible-core
+          pipx inject ansible-core ansible
+          ansible --version
+      - name: Test2
+        run: |
+          pipx uninstall ansible-core
+          pipx install ansible-base
+          pipx inject ansible-base ansible
+          ansible --version
