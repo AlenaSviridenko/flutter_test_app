@@ -23,4 +23,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test1
         run: |
-          brew install ruby@2.7.3
+          cd "$(brew --repo homebrew/core)" && git checkout 65d19d4f16c6be333b53df4bb68df21e9efd036f
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install ruby@2.7
+          git checkout master
