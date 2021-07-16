@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,13 +23,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test1
         run: |
-          pipx uninstall ansible-base
-          pipx install ansible-core
-          pipx inject ansible-core ansible
-          ansible --version
-      - name: Test2
-        run: |
-          pipx uninstall ansible-core
-          pipx install ansible-base
-          pipx inject ansible-base ansible==3.4.0
-          ansible --version
+          brew install ruby@2.7.3
