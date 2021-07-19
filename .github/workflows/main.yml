@@ -15,16 +15,18 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Test1
+        shell: pwsh
         run: |
-          brew unlink mongodb-community
-          brew uninstall mongodb-community@4.4
-          brew install mongodb-community
-          sudo ln -sf $(brew --prefix mongodb-community)/bin/* /usr/local/bin/
-          mongo --version
+          choco uninstall mongodb
+          choco install mongodb
+          mongo
+          choco uninstall mongodb
+          choco install mongodb -y --version=4.4.7
+          mongo
