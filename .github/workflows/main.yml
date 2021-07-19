@@ -23,7 +23,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test1
         run: |
-          brew uninstall ruby@2.7
-          cd "$(brew --repo homebrew/core)" && git checkout 65d19d4f16c6be333b53df4bb68df21e9efd036f
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install ruby@2.7
-          git checkout master
+          brew install mongodb-community
+          sudo ln -sf $(brew --prefix mongodb-community)/bin/* /usr/local/bin/
+          mongo --version
