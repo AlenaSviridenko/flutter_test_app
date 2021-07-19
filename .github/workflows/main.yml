@@ -24,6 +24,7 @@ jobs:
       - name: Test1
         run: |
           brew uninstall mongodb-community@4.4
+          brew tap mongodb/brew
           brew install mongodb-community@5.0
           sudo ln -sf $(brew --prefix mongodb-community@5.0)/bin/* /usr/local/bin/
           mongo --version
