@@ -24,12 +24,10 @@ jobs:
       - name: Test1
         shell: pwsh
         run: |
-          choco uninstall mongodb
-          choco install mongodb --no-progress
-          mongo
+          openssl version -a
       - name: Test2
         shell: pwsh
         run: |
-          choco uninstall mongodb
-          choco install mongodb -y --version=4.4.7 --no-progress
-          mongo
+          choco uninstall openssl.light
+          choco install openssl.light --x86 --no-progress
+          openssl version -a
