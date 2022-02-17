@@ -31,3 +31,4 @@ jobs:
           echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
           sudo apt-get update
           sudo apt-get -y install cuda-drivers
+          nvidia-smi
