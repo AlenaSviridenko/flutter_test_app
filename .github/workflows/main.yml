@@ -15,20 +15,25 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Test2
+        shell: pwsh
         run: |
-          sudo apt-get install linux-headers-$(uname -r)
-          distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g')
-          wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-$distribution.pin
-          sudo mv cuda-$distribution.pin /etc/apt/preferences.d/cuda-repository-pin-600
-          sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/7fa2af80.pub
-          echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
-          sudo apt-get update
-          sudo apt-get -y install cuda-drivers
-          nvidia-smi
+          Invoke-WebRequest -OutFile cuda_installer.exe -Uri https://developer.download.nvidia.com/compute/cuda/11.6.0/network_installers/cuda_11.6.0_windows_network.exe
+          $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
+          $exitCode = $process.ExitCode
+          if ($exitCode -eq 0)
+          {
+            Write-Host "Windows Nvidia drivers are installed successfully"
+            nvidia-smi
+          }
+          else
+          {
+            Write-Host "Windows Nvidia drivers installation failed. Non zero exit code returned by the installation process: $exitCode"
+            exit $exitCode
+          }
