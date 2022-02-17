@@ -15,19 +15,19 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Test1
-        shell: pwsh
-        run: |
-          openssl version -a
       - name: Test2
-        shell: pwsh
         run: |
-          choco uninstall openssl.light
-          choco install openssl.light --x86 --no-progress
-          openssl version -a
+          sudo apt-get install linux-headers-$(uname -r)
+          distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g')
+          wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-$distribution.pin
+          sudo mv cuda-$distribution.pin /etc/apt/preferences.d/cuda-repository-pin-600
+          sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/7fa2af80.pub
+          echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
+          sudo apt-get update
+          sudo apt-get -y install cuda-drivers
