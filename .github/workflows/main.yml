@@ -25,7 +25,7 @@ jobs:
         shell: pwsh
         run: |
           Invoke-WebRequest -OutFile cuda_installer.exe -Uri https://developer.download.nvidia.com/compute/cuda/11.6.0/network_installers/cuda_11.6.0_windows_network.exe
-          $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
+          $process = Start-Process -FilePath cuda_installer.exe -ArgumentList "-s" -Wait -PassThru
           $exitCode = $process.ExitCode
           if ($exitCode -eq 0)
           {
