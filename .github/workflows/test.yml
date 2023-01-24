@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          Get-Module -Name Az -ListAvailable
+          Remove-AzResourceGroup -Name "RG" -Force
         shell: pwsh
