@@ -5,11 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          if (-not (Get-Module -Name Az -ListAvailable))
-          {
-            Write-Host "Installing Az module. This may take a few minutes..."
-            Install-Module -Name Az -Scope CurrentUser -AllowClobber -Force -SkipPublisherCheck
-          }
-          Connect-AzAccount
+          Get-Module -Name Az -ListAvailable
+          
           Remove-AzResourceGroup -Name "RG" -Force
         shell: pwsh
