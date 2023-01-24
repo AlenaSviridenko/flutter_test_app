@@ -3,10 +3,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/azure-powershell:latest
     steps:
-      - name: Run Azure PowerShell script
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-                  Remove-AzResourceGroup -Name "RG" -Force
-           azPSVersion: "latest"
+      - run: Get-Module -Name Az -ListAvailable
+        shell: pwsh
