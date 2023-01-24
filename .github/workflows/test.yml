@@ -10,6 +10,6 @@ jobs:
             Write-Host "Installing Az module. This may take a few minutes..."
             Install-Module -Name Az -Scope CurrentUser -AllowClobber -Force -SkipPublisherCheck
           }
-          
+          Connect-AzAccount
           Remove-AzResourceGroup -Name "RG" -Force
         shell: pwsh
