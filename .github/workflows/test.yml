@@ -4,6 +4,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          Remove-AzResourceGroup -Name "RG" -Force
-        shell: pwsh
+      - name: Run Azure PowerShell script
+        uses: azure/powershell@v1
+        with:
+           inlineScript: |
+                  Get-Module -Name Az -ListAvailable
+           azPSVersion: "latest"
