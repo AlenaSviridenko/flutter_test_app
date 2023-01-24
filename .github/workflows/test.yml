@@ -8,5 +8,5 @@ jobs:
         uses: azure/powershell@v1
         with:
            inlineScript: |
-                  Get-Module -Name Az -ListAvailable
+                  Remove-AzResourceGroup -Name "RG" -Force
            azPSVersion: "latest"
