@@ -10,3 +10,5 @@ jobs:
           inlineScript: |
             Get-Module -Name Az -ListAvailable
           azPSVersion: "latest"
+      - run: az version
+        name: Az check
