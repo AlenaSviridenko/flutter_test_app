@@ -6,5 +6,9 @@ jobs:
     container:
       image: mcr.microsoft.com/azure-powershell:latest
     steps:
-      - run: Get-Module -Name Az -ListAvailable
-        shell: pwsh
+      - name: Azure
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            Get-Module -Name Az -ListAvailable
+          azPSVersion: "latest"
