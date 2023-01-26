@@ -8,7 +8,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            Get-Module -Name Az -ListAvailable
+            az version
           azPSVersion: "latest"
       - run: az version
         name: Az check
