@@ -2,13 +2,17 @@ on: [workflow_dispatch]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - name: Azure
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            az version
-          azPSVersion: "latest"
-      - run: az version
-        name: Az check
+      - name: make project
+        run: |
+          mkdir my-project
+          cd my-project
+          yarn init --yes
+          yarn install gulp
+          yarn gulp --version
+      - name: create gulpfile
+        run: |
+          cd my-project
+          cat "function defaultTask(cb) { console.log("hello"); cb(); } exports.default = defaultTask" > gulpfile.js
+          yarn gulp
