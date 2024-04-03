@@ -14,7 +14,7 @@ jobs:
       - name: create gulpfile
         run: |
           cd my-project
-          cat "function defaultTask(cb) { setTimeout(() => { console.log('Delayed for 10 second.'); }, '10000'); cb(); } exports.default = defaultTask" > gulpfile.js
+          echo "function defaultTask(cb) { setTimeout(() => { console.log('Delayed for 10 second.'); }, '10000'); cb(); } exports.default = defaultTask" > gulpfile.js
           yarn gulp
           echo something
           exit 0
