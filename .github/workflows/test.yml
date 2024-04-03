@@ -9,7 +9,7 @@ jobs:
           mkdir my-project
           cd my-project
           yarn init --yes
-          yarn install gulp
+          yarn add --dev gulp
           yarn gulp --version
       - name: create gulpfile
         run: |
